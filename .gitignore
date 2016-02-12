@@ -13,3 +13,7 @@ hs_err_pid*
 
 .metadata/
 RemoteSystemsTempFiles
+
+/.settings
+/bin
+/build.fxbuild
