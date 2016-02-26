@@ -13,10 +13,10 @@ public class Animal {
 	private String animalName;
 	private Image animalPicture;
 	private String animalBreed;
-	private Category animalCat;
+	private Category animalCategory;
 	
 	public Animal(int animalId, int animalAge, String animalType, String animalColour, char animalGender,
-			String animalDescription, String animalName, Image animalPicture, String animalBreed, Category animalCat) {
+			String animalDescription, String animalName, Image animalPicture, String animalBreed, Category animalCategory) {
 		
 		this.animalId = animalId;
 		this.animalAge = animalAge;
@@ -27,7 +27,7 @@ public class Animal {
 		this.animalName = animalName;
 		this.animalPicture = animalPicture;
 		this.animalBreed = animalBreed;
-		this.animalCat = animalCat;
+		this.animalCategory = animalCategory;
 	}
 
 	public Animal(int animalId, String animalType, String animalColour, char animalGender, String animalDescription,
@@ -128,11 +128,11 @@ public class Animal {
 		this.animalBreed = animalBreed;
 	}
 
-	public Category getAnimalCat() {
-		return animalCat;
+	public Category getanimalCategory() {
+		return animalCategory;
 	}
 
-	public void setAnimalCat(Category animalCat) {
-		this.animalCat = animalCat;
+	public void setanimalCategory(Category animalCategory) {
+		this.animalCategory = animalCategory;
 	}
 }
