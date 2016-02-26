@@ -128,11 +128,11 @@ public class Animal {
 		this.animalBreed = animalBreed;
 	}
 
-	public Category getanimalCategory() {
+	public Category getAnimalCategory() {
 		return animalCategory;
 	}
 
-	public void setanimalCategory(Category animalCategory) {
+	public void setAnimalCategory(Category animalCategory) {
 		this.animalCategory = animalCategory;
 	}
 }
