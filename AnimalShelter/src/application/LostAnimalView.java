@@ -1,9 +1,12 @@
 package application;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -18,7 +21,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 public class LostAnimalView extends Scene {
 	private MenuBar menuBar;
@@ -248,6 +250,10 @@ public class LostAnimalView extends Scene {
 		HBox title = new HBox();
 		HBox animalSearch = new HBox();
 		animalSearch.setSpacing(30);
+		HBox allowOwnerDetails = new HBox();
+		allowOwnerDetails.setSpacing(20);
+		HBox ownerDetails = new HBox();
+		ownerDetails.setSpacing(30);
 	    HBox actionButtons = new HBox();
 	    actionButtons.setSpacing(20);
 		
@@ -265,10 +271,24 @@ public class LostAnimalView extends Scene {
 
 	    ScrollPane scrollPane = new ScrollPane();
 	    TextArea animalDescriptionArea = new TextArea();
-	    animalDescriptionArea.setMinSize(800, 350);
+	    animalDescriptionArea.setMinSize(800, 150);
 	    animalDescriptionArea.setEditable(false);
 	    scrollPane.setContent(animalDescriptionArea);
-
+	    
+	    CheckBox allowOwnerDetailsCheckBox = new CheckBox("Allow Owner Details");
+	    allowOwnerDetails.getChildren().addAll(allowOwnerDetailsCheckBox);
+	    
+	    Label ownerNameLabel = new Label("Full Name:");
+	    TextField ownerNameField = new TextField();
+	    ownerNameField.setMinWidth(300);
+	    ownerNameField.setEditable(false);
+	    Label ownerEmailLabel = new Label("Email:");
+	    TextField ownerEmailField = new TextField();
+	    ownerEmailField.setMinWidth(300);
+	    ownerEmailField.setEditable(false);
+	    ownerDetails.getChildren().addAll(ownerNameLabel, ownerNameField, ownerEmailLabel, ownerEmailField);
+	    ownerDetails.setVisible(false);
+	    
 	    Button editButton = new Button("Edit");
 	    editButton.setStyle("-fx-background-color: orange; -fx-text-fill: white");
 	    Button cancelButton = new Button("Cancel");
@@ -278,7 +298,24 @@ public class LostAnimalView extends Scene {
 	    displayLostAnimalPane.add(title, 0, 0);
 	    displayLostAnimalPane.add(animalSearch, 0, 5, 2, 1);
 	    displayLostAnimalPane.add(animalDescriptionArea, 0, 10);
-	    displayLostAnimalPane.add(actionButtons, 0, 13);
+	    displayLostAnimalPane.add(allowOwnerDetails, 0, 13);
+	    displayLostAnimalPane.add(ownerDetails, 0, 15);
+	    
+	    allowOwnerDetailsCheckBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				if(allowOwnerDetailsCheckBox.isSelected()) {
+					ownerDetails.setVisible(true);
+				}
+				
+				else {
+					ownerDetails.setVisible(false);
+				}
+			}
+		});
+	    
+	    displayLostAnimalPane.add(actionButtons, 0, 18);
 		
         return displayLostAnimalPane;
 	}
