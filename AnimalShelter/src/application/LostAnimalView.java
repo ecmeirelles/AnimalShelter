@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -204,6 +205,47 @@ public class LostAnimalView extends Scene {
 	}
 	
 	public Pane displayLostAnimalAction() {
-		//TODO: Create the body of the method
+		GridPane displayLostAnimalPane = new GridPane();
+		displayLostAnimalPane.setAlignment(Pos.CENTER);
+		displayLostAnimalPane.setHgap(30);
+		displayLostAnimalPane.setVgap(12);
+		displayLostAnimalPane.setPadding(new Insets(100));
+		
+		HBox title = new HBox();
+		HBox animalSearch = new HBox();
+		animalSearch.setSpacing(30);
+	    HBox actionButtons = new HBox();
+	    actionButtons.setSpacing(20);
+		
+	    Label sectionTitle = new Label("LOST ANIMAL");
+	    sectionTitle.setFont(Font.font("Berlin Sans FB", 20));
+	    title.getChildren().add(sectionTitle);
+	    title.setAlignment(Pos.CENTER);
+	    
+	    Label animalSearchLabel = new Label("ID:");
+	    TextField animalSearchField = new TextField();
+	    animalSearchField.setMinWidth(400);
+	    Button searchButton = new Button("Search");
+	    animalSearch.getChildren().addAll(animalSearchLabel, animalSearchField, searchButton);
+	    animalSearch.setAlignment(Pos.CENTER);
+
+	    ScrollPane scrollPane = new ScrollPane();
+	    TextArea animalDescriptionArea = new TextArea();
+	    animalDescriptionArea.setMinSize(800, 350);
+	    animalDescriptionArea.setEditable(false);
+	    scrollPane.setContent(animalDescriptionArea);
+
+	    Button editButton = new Button("Edit");
+	    editButton.setStyle("-fx-background-color: orange; -fx-text-fill: white");
+	    Button cancelButton = new Button("Cancel");
+	    actionButtons.getChildren().addAll(editButton, cancelButton);
+	    actionButtons.setAlignment(Pos.CENTER);
+
+	    displayLostAnimalPane.add(title, 0, 0);
+	    displayLostAnimalPane.add(animalSearch, 0, 5, 2, 1);
+	    displayLostAnimalPane.add(animalDescriptionArea, 0, 10);
+	    displayLostAnimalPane.add(actionButtons, 0, 13);
+		
+        return displayLostAnimalPane;
 	}
 }

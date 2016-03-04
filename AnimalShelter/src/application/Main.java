@@ -71,6 +71,15 @@ public class Main extends Application {
 				}
 			});
 			displayLostAnimal = new MenuItem("Display All");
+			displayLostAnimal.setOnAction(new EventHandler<ActionEvent>() {
+				
+				@Override
+				public void handle(ActionEvent event) {
+					LostAnimalView lostAnimalScene = new LostAnimalView(new BorderPane(), 1000, 800, "Display");
+					primaryStage.setScene(lostAnimalScene);
+					
+				}
+			});
 			
 			addFoundAnimal = new MenuItem("New");
 			removeFoundAnimal = new MenuItem("Remove");
