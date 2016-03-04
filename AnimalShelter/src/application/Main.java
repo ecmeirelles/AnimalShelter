@@ -1,6 +1,8 @@
 package application;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -14,6 +16,9 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+	private Stage stage;
+	private Scene homeScene;
+	
 	private MenuBar menuBar;
 	private Menu homepage;
 	private Menu lostAnimal;
@@ -32,8 +37,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			setStage(primaryStage);
 			BorderPane root = new BorderPane();
-			Scene homeScene = new Scene(root, 1000, 800);
+			homeScene = new Scene(root, 1000, 800);
 			
 			menuBar = new MenuBar();
 			
@@ -45,6 +51,15 @@ public class Main extends Application {
 			animalAdoption = new Menu("Animal Adoption");
 			
 			addLostAnimal = new MenuItem("New");
+			addLostAnimal.setOnAction(new EventHandler<ActionEvent>() {
+				
+				@Override
+				public void handle(ActionEvent event) {
+					LostAnimalView lostAnimalScene = new LostAnimalView(new BorderPane(), 1000, 800, "ADD");
+					primaryStage.setScene(lostAnimalScene);
+					
+				}
+			});
 			removeLostAnimal = new MenuItem("Remove");
 			displayLostAnimal = new MenuItem("Display All");
 			
@@ -78,4 +93,22 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+
+	public Stage getStage() {
+		return stage;
+	}
+
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+
+	public Scene getHomeScene() {
+		return homeScene;
+	}
+
+	public void setHomeScene(Scene homeScene) {
+		this.homeScene = homeScene;
+	}
+	
+	
 }
