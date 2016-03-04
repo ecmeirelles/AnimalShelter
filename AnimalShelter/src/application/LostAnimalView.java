@@ -18,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class LostAnimalView extends Scene {
 	private MenuBar menuBar;
@@ -89,6 +90,12 @@ public class LostAnimalView extends Scene {
 	    animalIdName.setSpacing(30);
 	    HBox animalDateLocation = new HBox();
 	    animalDateLocation.setSpacing(30);
+	    HBox ownerName = new HBox();
+	    ownerName.setSpacing(30);
+	    HBox ownerTelephoneEmail = new HBox();
+	    ownerTelephoneEmail.setSpacing(30);
+	    HBox ownerAddress = new HBox();
+	    ownerAddress.setSpacing(30);
 	    HBox actionButtons = new HBox();
 	    actionButtons.setSpacing(20);
 		
@@ -116,10 +123,33 @@ public class LostAnimalView extends Scene {
 	    Label animalDescriptionLabel = new Label("Description:");
 	    TextArea animalDescriptionArea = new TextArea();
 	    animalDescriptionArea.setMinSize(800, 100);
+	    
+	    Label personDetails = new Label("OWNER DETAILS:");
+	    personDetails.setFont(Font.font("Berlin Sans FB", 15));
+	    
+	    Label ownerNameLabel = new Label("Full Name:");
+	    TextField ownerNameField = new TextField();
+	    ownerNameField.setMinWidth(700);
+	    ownerName.getChildren().addAll(ownerNameLabel, ownerNameField);
+	    
+	    Label ownerTelephoneLabel = new Label("Telephone:");
+	    TextField ownerTelephoneField = new TextField();
+	    ownerTelephoneField.setMinWidth(70);
+	    Label ownerEmailLabel = new Label("Email:");
+	    TextField ownerEmailField = new TextField();
+	    ownerEmailField.setMinWidth(410);
+	    ownerTelephoneEmail.getChildren().addAll(ownerTelephoneLabel, ownerTelephoneField, ownerEmailLabel, ownerEmailField);
+	    
+	    
+	    Label ownerAddressLabel = new Label("Address:");
+	    TextField ownerAddressField = new TextField();
+	    ownerAddressField.setMinWidth(710);
+	    ownerAddress.getChildren().addAll(ownerAddressLabel, ownerAddressField);
 
 	    Button submitButton = new Button("Submit");
+	    submitButton.setStyle("-fx-background-color: darkGreen; -fx-text-fill: white");
 	    Button clearButton = new Button("Clear");
-	    Button exitButton = new Button("Exit");
+	    Button exitButton = new Button("Cancel");
 	    actionButtons.getChildren().addAll(submitButton, clearButton, exitButton);
 	    actionButtons.setAlignment(Pos.CENTER);
 
@@ -128,7 +158,11 @@ public class LostAnimalView extends Scene {
 	    addLostAnimalPane.add(animalDateLocation, 0, 6, 2, 1);
 	    addLostAnimalPane.add(animalDescriptionLabel, 0, 7);
 	    addLostAnimalPane.add(animalDescriptionArea, 0, 8);
-	    addLostAnimalPane.add(actionButtons, 0, 10);
+	    addLostAnimalPane.add(personDetails, 0, 12);
+	    addLostAnimalPane.add(ownerName, 0, 15);
+	    addLostAnimalPane.add(ownerTelephoneEmail, 0, 16);
+	    addLostAnimalPane.add(ownerAddress, 0, 17);
+	    addLostAnimalPane.add(actionButtons, 0, 20);
 		
         return addLostAnimalPane;
 	}
