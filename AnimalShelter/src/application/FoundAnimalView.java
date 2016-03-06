@@ -8,14 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -23,17 +18,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
 public class FoundAnimalView extends Scene {
-	private MenuBar menuBar;
-	private Menu homepage;
-	private Menu lostAnimal;
-	private Menu foundAnimal;
-	private Menu animalAdoption;
-	private MenuItem addLostAnimal;
-	private MenuItem removeLostAnimal;
-	private MenuItem displayLostAnimal;
-	private MenuItem addFoundAnimal;
-	private MenuItem removeFoundAnimal;
-	private MenuItem displayFoundAnimal;
 	
 	private Pane actionPane;
 
@@ -42,26 +26,8 @@ public class FoundAnimalView extends Scene {
 		
 		HBox adaptableBox = new HBox();
 		
-		menuBar = new MenuBar();
-		
-		homepage = new Menu("");
-		homepage.setGraphic(new ImageView(new Image("file:src\\images\\home-icon.png")));
-		
-		lostAnimal = new Menu("Lost Animal");
-		foundAnimal = new Menu("Found Animal");
-		animalAdoption = new Menu("Animal Adoption");
-		
-		addLostAnimal = new MenuItem("New");
-		removeLostAnimal = new MenuItem("Remove");
-		displayLostAnimal = new MenuItem("Display All");
-		
-		addFoundAnimal = new MenuItem("New");
-		removeFoundAnimal = new MenuItem("Remove");
-		displayFoundAnimal = new MenuItem("Display All");
-		
-		menuBar.getMenus().addAll(homepage, lostAnimal, foundAnimal, animalAdoption);
-		lostAnimal.getItems().addAll(addLostAnimal, removeLostAnimal, displayLostAnimal);
-		foundAnimal.getItems().addAll(addFoundAnimal, removeFoundAnimal, displayFoundAnimal);
+		DisplayMenu displayMenu = new DisplayMenu(new Main());
+		displayMenu.menu();
 
 		if(action.equalsIgnoreCase("ADD")) {
 			actionPane = addFoundAnimalAction();
@@ -75,7 +41,7 @@ public class FoundAnimalView extends Scene {
 			actionPane = displayFoundAnimalAction();
 		}
 		
-		root.setTop(menuBar);
+		root.setTop(displayMenu.getMenuBar());
 		adaptableBox.getChildren().add(actionPane);
 		root.setCenter(adaptableBox);
 	}
