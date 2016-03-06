@@ -1,11 +1,11 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class FoundAnimal extends Category {
 	private String foundLocation;
 
-	public FoundAnimal(Date date, Person emergencyContact, String foundLocation) {
+	public FoundAnimal(LocalDate date, Person emergencyContact, String foundLocation) {
 		super(date, emergencyContact);
 		
 		this.foundLocation = foundLocation;

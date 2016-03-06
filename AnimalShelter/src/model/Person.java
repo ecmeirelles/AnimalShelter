@@ -9,6 +9,10 @@ public class Person {
 	private String personEmail;
 	private ArrayList<Person> personList = new ArrayList<Person>();
 	
+	public Person() {
+		
+	}
+	
 	public Person(String personName, String personAddress, String personPhone, String personEmail) {
 		this.personName = personName;
 		this.personAddress = personAddress;

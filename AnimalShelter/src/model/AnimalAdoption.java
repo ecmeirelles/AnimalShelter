@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class AnimalAdoption extends Category {
 	private boolean isNeutered;
@@ -9,7 +9,7 @@ public class AnimalAdoption extends Category {
 	private String status;
 	private boolean isReserved;
 	
-	public AnimalAdoption(Date date, Person emergencyContact, boolean isNeutered, boolean isChipped, boolean isVaccinated, String status,
+	public AnimalAdoption(LocalDate date, Person emergencyContact, boolean isNeutered, boolean isChipped, boolean isVaccinated, String status,
 			boolean isReserved) {
 		super(date, emergencyContact);
 		

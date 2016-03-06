@@ -1,5 +1,8 @@
 package application;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import controller.LostAnimalController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -8,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -17,6 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.util.StringConverter;
 
 public class LostAnimalView extends Scene {
 	private Pane actionPane;
@@ -46,7 +51,7 @@ public class LostAnimalView extends Scene {
 	
 	private TextField animalIdField;
 	private TextField animalNameField;
-	private TextField animalDateField;
+	private DatePicker animalDateField;
 	private TextField animalLocationField;
 	private TextField ownerNameField;
 	private TextField ownerTelephoneField;
@@ -127,8 +132,32 @@ public class LostAnimalView extends Scene {
 	    animalIdName.getChildren().addAll(animalIdLabel, animalIdField, animalNameLabel, animalNameField);
 	    
 	    animalDateLabel = new Label("Date:");
-	    animalDateField = new TextField();
+	    animalDateField = new DatePicker();
 	    animalDateField.setMinWidth(20);
+	    animalDateField.setPromptText("dd-MM-yyyy");
+	    animalDateField.setConverter(new StringConverter<LocalDate>() {
+	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+	        @Override 
+	        public String toString(LocalDate date) {
+	            if (date != null) {
+	                return dateFormatter.format(date);
+	            } 
+	            else {
+	                return "";
+	            }
+	        }
+
+	        @Override 
+	        public LocalDate fromString(String string) {
+	            if (string != null && !string.isEmpty()) {
+	                return LocalDate.parse(string, dateFormatter);
+	            } 
+	            else {
+	                return null;
+	            }
+	        }
+	    });
 	    animalLocationLabel = new Label("Location:");
 	    animalLocationField = new TextField();
 	    animalLocationField.setMinWidth(430);
@@ -223,7 +252,32 @@ public class LostAnimalView extends Scene {
 	    animalIdName.getChildren().addAll(animalIdLabel, animalIdField, animalNameLabel, animalNameField);
 	    
 	    animalDateLabel = new Label("Date:");
-	    animalDateField = new TextField();
+	    animalDateField = new DatePicker();
+	    animalDateField.setMinWidth(20);
+	    animalDateField.setPromptText("dd-MM-yyyy");
+	    animalDateField.setConverter(new StringConverter<LocalDate>() {
+	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+	        @Override 
+	        public String toString(LocalDate date) {
+	            if (date != null) {
+	                return dateFormatter.format(date);
+	            } 
+	            else {
+	                return "";
+	            }
+	        }
+
+	        @Override 
+	        public LocalDate fromString(String string) {
+	            if (string != null && !string.isEmpty()) {
+	                return LocalDate.parse(string, dateFormatter);
+	            } 
+	            else {
+	                return null;
+	            }
+	        }
+	    });
 	    animalDateField.setMinWidth(20);
 	    animalDateField.setEditable(false);
 	    animalLocationLabel = new Label("Location:");
@@ -350,11 +404,11 @@ public class LostAnimalView extends Scene {
 		this.animalNameField = animalNameField;
 	}
 
-	public TextField getAnimalDateField() {
+	public DatePicker getAnimalDateField() {
 		return animalDateField;
 	}
 
-	public void setAnimalDateField(TextField animalDateField) {
+	public void setAnimalDateField(DatePicker animalDateField) {
 		this.animalDateField = animalDateField;
 	}
 

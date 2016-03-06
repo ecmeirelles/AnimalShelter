@@ -15,6 +15,10 @@ public class Animal {
 	private String animalBreed;
 	private Category animalCategory;
 	
+	public Animal() {
+		
+	}
+	
 	public Animal(int animalId, int animalAge, String animalType, String animalColour, char animalGender,
 			String animalDescription, String animalName, Image animalPicture, String animalBreed, Category animalCategory) {
 		

@@ -1,21 +1,25 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Category {
-	private Date date;
+	private LocalDate date;
 	private Person emergencyContact;
 	
-	public Category(Date date, Person emergencyContact) {
+	public Category() {
+		
+	}
+	
+	public Category(LocalDate date, Person emergencyContact) {
 		this.date = date;
 		this.emergencyContact = emergencyContact;
 	}
-	
-	public Date getDate() {
+
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(LocalDate localDate) {
+		this.date = localDate;
 	}
 	public Person getEmergencyContact() {
 		return emergencyContact;
