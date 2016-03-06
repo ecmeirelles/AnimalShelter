@@ -11,18 +11,23 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-	public static Stage stage;
-	private Scene homeScene;
+	private static Stage stage;
+	private static Scene scene;
+
 	private BorderPane root;
 	
 	private Label shelterIcon;
 	private Label shelterDescription;
 	
+	public static void main(String[] args) {
+		launch(args);
+	}
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			root = new BorderPane();
-			homeScene = new Scene(root, 1000, 800);
+			scene = new Scene(root, 1000, 800);
 			
 			DisplayMenu displayMenu = new DisplayMenu();
 			displayMenu.menu();
@@ -38,7 +43,7 @@ public class Main extends Application {
 			BorderPane.setAlignment(shelterDescription, Pos.TOP_CENTER);
 			root.setBottom(shelterDescription);
 			
-			primaryStage.setScene(homeScene);
+			primaryStage.setScene(scene);
 			primaryStage.show();
 			
 			stage = primaryStage;
@@ -48,7 +53,19 @@ public class Main extends Application {
 		}
 	} 
 	
-	public static void main(String[] args) {
-		launch(args);
+	public static Stage getStage() {
+		return stage;
+	}
+
+	public static void setStage(Stage stage) {
+		Main.stage = stage;
+	}
+
+	public static Scene getScene() {
+		return scene;
+	}
+
+	public static void setScene(Scene scene) {
+		Main.scene = scene;
 	}
 }

@@ -15,6 +15,7 @@ public class DisplayMenu {
 	private Menu lostAnimal;
 	private Menu foundAnimal;
 	private Menu animalAdoption;
+	private MenuItem goToHomepage;
 	private MenuItem addLostAnimal;
 	private MenuItem removeLostAnimal;
 	private MenuItem displayLostAnimal;
@@ -28,6 +29,15 @@ public class DisplayMenu {
 		homepage = new Menu("");
 		homepage.setGraphic(new ImageView(new Image("file:src\\images\\home-icon.png")));
 		
+		goToHomepage = new MenuItem("Go to Homepage");
+		goToHomepage.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				Main.getStage().setScene(Main.getScene());
+			}
+		});
+		
 		lostAnimal = new Menu("Lost Animal");
 		foundAnimal = new Menu("Found Animal");
 		animalAdoption = new Menu("Animal Adoption");
@@ -38,7 +48,7 @@ public class DisplayMenu {
 			@Override
 			public void handle(ActionEvent event) {
 				LostAnimalView lostAnimalScene = new LostAnimalView(new BorderPane(), 1000, 800, "ADD");
-				Main.stage.setScene(lostAnimalScene);
+				Main.getStage().setScene(lostAnimalScene);
 				
 			}
 		});
@@ -48,7 +58,7 @@ public class DisplayMenu {
 			@Override
 			public void handle(ActionEvent event) {
 				LostAnimalView lostAnimalScene = new LostAnimalView(new BorderPane(), 1000, 800, "Remove");
-				Main.stage.setScene(lostAnimalScene);			
+				Main.getStage().setScene(lostAnimalScene);			
 			}
 		});
 		displayLostAnimal = new MenuItem("Display All");
@@ -57,7 +67,7 @@ public class DisplayMenu {
 			@Override
 			public void handle(ActionEvent event) {
 				LostAnimalView lostAnimalScene = new LostAnimalView(new BorderPane(), 1000, 800, "Display");
-				Main.stage.setScene(lostAnimalScene);
+				Main.getStage().setScene(lostAnimalScene);
 				
 			}
 		});
@@ -68,7 +78,7 @@ public class DisplayMenu {
 			@Override
 			public void handle(ActionEvent event) {
 				FoundAnimalView foundAnimalScene = new FoundAnimalView(new BorderPane(), 1000, 800, "ADD");
-				Main.stage.setScene(foundAnimalScene);
+				Main.getStage().setScene(foundAnimalScene);
 				
 			}
 		});
@@ -79,7 +89,7 @@ public class DisplayMenu {
 			@Override
 			public void handle(ActionEvent event) {
 				FoundAnimalView foundAnimalScene = new FoundAnimalView(new BorderPane(), 1000, 800, "Remove");
-				Main.stage.setScene(foundAnimalScene);
+				Main.getStage().setScene(foundAnimalScene);
 				
 			}
 		});
@@ -90,12 +100,13 @@ public class DisplayMenu {
 			@Override
 			public void handle(ActionEvent event) {
 				FoundAnimalView foundAnimalScene = new FoundAnimalView(new BorderPane(), 1000, 800, "Display");
-				Main.stage.setScene(foundAnimalScene);
+				Main.getStage().setScene(foundAnimalScene);
 				
 			}
 		});
 					
 		menuBar.getMenus().addAll(homepage, lostAnimal, foundAnimal, animalAdoption);
+		homepage.getItems().add(goToHomepage);
 		lostAnimal.getItems().addAll(addLostAnimal, removeLostAnimal, displayLostAnimal);
 		foundAnimal.getItems().addAll(addFoundAnimal, removeFoundAnimal, displayFoundAnimal);
 	}
