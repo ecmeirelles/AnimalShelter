@@ -82,9 +82,38 @@ public class Main extends Application {
 			});
 			
 			addFoundAnimal = new MenuItem("New");
-			removeFoundAnimal = new MenuItem("Remove");
-			displayFoundAnimal = new MenuItem("Display All");
+			addFoundAnimal.setOnAction(new EventHandler<ActionEvent>() {
+				
+				@Override
+				public void handle(ActionEvent event) {
+					FoundAnimalView foundAnimalScene = new FoundAnimalView(new BorderPane(), 1000, 800, "ADD");
+					primaryStage.setScene(foundAnimalScene);
+					
+				}
+			});
 			
+			removeFoundAnimal = new MenuItem("Remove");
+			removeFoundAnimal.setOnAction(new EventHandler<ActionEvent>() {
+				
+				@Override
+				public void handle(ActionEvent event) {
+					FoundAnimalView foundAnimalScene = new FoundAnimalView(new BorderPane(), 1000, 800, "Remove");
+					primaryStage.setScene(foundAnimalScene);
+					
+				}
+			});
+			
+			displayFoundAnimal = new MenuItem("Display All");
+			displayFoundAnimal.setOnAction(new EventHandler<ActionEvent>() {
+				
+				@Override
+				public void handle(ActionEvent event) {
+					FoundAnimalView foundAnimalScene = new FoundAnimalView(new BorderPane(), 1000, 800, "Display");
+					primaryStage.setScene(foundAnimalScene);
+					
+				}
+			});
+						
 			menuBar.getMenus().addAll(homepage, lostAnimal, foundAnimal, animalAdoption);
 			lostAnimal.getItems().addAll(addLostAnimal, removeLostAnimal, displayLostAnimal);
 			foundAnimal.getItems().addAll(addFoundAnimal, removeFoundAnimal, displayFoundAnimal);
