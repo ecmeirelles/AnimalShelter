@@ -1,8 +1,14 @@
 package controller;
 
+import java.util.Optional;
+
 import application.LostAnimalView;
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 public class LostAnimalController extends ActionEvent implements EventHandler<ActionEvent> {
 	private static final long serialVersionUID = 1L;
@@ -46,6 +52,14 @@ public class LostAnimalController extends ActionEvent implements EventHandler<Ac
 	}	
 	
 	public void cancelButton() {
-		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Cancelation");
+		alert.setHeaderText("Cancelation");
+		alert.setContentText("Attention: Information will not be kept!\nDo you want to proceed?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+		    Main.getStage().setScene(Main.getScene());
+		} 
 	}
 }
