@@ -22,12 +22,6 @@ public class DisplayMenu {
 	private MenuItem removeFoundAnimal;
 	private MenuItem displayFoundAnimal;
 	
-	Main main;
-	
-	public DisplayMenu(Main main) {
-		this.main = main;
-	}
-	
 	public void menu() {
 		menuBar = new MenuBar();
 		

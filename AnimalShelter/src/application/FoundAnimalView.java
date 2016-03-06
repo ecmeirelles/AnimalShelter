@@ -26,7 +26,7 @@ public class FoundAnimalView extends Scene {
 		
 		HBox adaptableBox = new HBox();
 		
-		DisplayMenu displayMenu = new DisplayMenu(new Main());
+		DisplayMenu displayMenu = new DisplayMenu();
 		displayMenu.menu();
 
 		if(action.equalsIgnoreCase("ADD")) {

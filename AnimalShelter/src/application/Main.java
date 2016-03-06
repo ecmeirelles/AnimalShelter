@@ -24,7 +24,7 @@ public class Main extends Application {
 			root = new BorderPane();
 			homeScene = new Scene(root, 1000, 800);
 			
-			DisplayMenu displayMenu = new DisplayMenu(this);
+			DisplayMenu displayMenu = new DisplayMenu();
 			displayMenu.menu();
 			root.setTop(displayMenu.getMenuBar());
 
