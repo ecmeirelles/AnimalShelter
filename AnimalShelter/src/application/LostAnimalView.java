@@ -1,5 +1,6 @@
 package application;
 
+import controller.LostAnimalController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -19,6 +20,52 @@ import javafx.scene.text.Font;
 
 public class LostAnimalView extends Scene {
 	private Pane actionPane;
+	private HBox title;
+    private HBox animalIdName;
+    private HBox animalDateLocation;
+    private HBox animalSearch;
+    private HBox ownerName;
+    private HBox ownerTelephoneEmail;
+    private HBox ownerAddress;
+    private HBox ownerDetails;
+    private HBox allowOwnerDetails;
+    private HBox actionButtons;
+	
+	private Label sectionTitle;
+	private Label animalIdLabel;
+	private Label animalNameLabel;
+	private Label animalDateLabel;
+	private Label animalLocationLabel;
+	private Label animalDescriptionLabel;
+	private Label personDetails;
+	private Label ownerNameLabel;
+	private Label ownerTelephoneLabel;
+	private Label ownerEmailLabel;
+    private Label ownerAddressLabel;
+    private Label animalSearchLabel;
+	
+	private TextField animalIdField;
+	private TextField animalNameField;
+	private TextField animalDateField;
+	private TextField animalLocationField;
+	private TextField ownerNameField;
+	private TextField ownerTelephoneField;
+	private TextField ownerEmailField;
+	private TextField ownerAddressField;
+	private TextField animalSearchField;
+	
+	private TextArea animalDescriptionArea;
+    
+    private Button removeButton;
+    private Button cancelButton;
+    private Button submitButton;
+    private Button clearButton;
+    private Button exitButton;
+    private Button searchButton;
+    private Button editButton;
+    
+    private CheckBox allowOwnerDetailsCheckBox;
+    private ScrollPane scrollPane;
 
 	public LostAnimalView(BorderPane root, double width, double height, String action) {
 		super(root, width, height);
@@ -52,71 +99,73 @@ public class LostAnimalView extends Scene {
 		addLostAnimalPane.setVgap(12);
 		addLostAnimalPane.setPadding(new Insets(100));
 		
-		HBox title = new HBox();
-	    HBox animalIdName = new HBox();
+		title = new HBox();
+	    animalIdName = new HBox();
 	    animalIdName.setSpacing(30);
-	    HBox animalDateLocation = new HBox();
+	    animalDateLocation = new HBox();
 	    animalDateLocation.setSpacing(30);
-	    HBox ownerName = new HBox();
+	    ownerName = new HBox();
 	    ownerName.setSpacing(30);
-	    HBox ownerTelephoneEmail = new HBox();
+	    ownerTelephoneEmail = new HBox();
 	    ownerTelephoneEmail.setSpacing(30);
-	    HBox ownerAddress = new HBox();
+	    ownerAddress = new HBox();
 	    ownerAddress.setSpacing(30);
-	    HBox actionButtons = new HBox();
+	    actionButtons = new HBox();
 	    actionButtons.setSpacing(20);
 		
-	    Label sectionTitle = new Label("LOST ANIMAL");
+	    sectionTitle = new Label("LOST ANIMAL");
 	    sectionTitle.setFont(Font.font("Berlin Sans FB", 20));
 	    title.getChildren().add(sectionTitle);
 	    title.setAlignment(Pos.CENTER);
 	    
-		Label animalIdLabel = new Label("ID:");
-	    TextField animalIdField = new TextField();
+		animalIdLabel = new Label("ID:");
+	    animalIdField = new TextField();
 	    animalIdField.setMinWidth(50);
-	    Label animalNameLabel = new Label("Full name:");
-	    TextField animalNameField = new TextField();
+	    animalNameLabel = new Label("Full name:");
+	    animalNameField = new TextField();
 	    animalNameField.setMinWidth(443);
 	    animalIdName.getChildren().addAll(animalIdLabel, animalIdField, animalNameLabel, animalNameField);
 	    
-	    Label animalDateLabel = new Label("Date:");
-	    TextField animalDateField = new TextField();
+	    animalDateLabel = new Label("Date:");
+	    animalDateField = new TextField();
 	    animalDateField.setMinWidth(20);
-	    Label animalLocationLabel = new Label("Location:");
-	    TextField animalLocationField = new TextField();
+	    animalLocationLabel = new Label("Location:");
+	    animalLocationField = new TextField();
 	    animalLocationField.setMinWidth(430);
 	    animalDateLocation.getChildren().addAll(animalDateLabel, animalDateField, animalLocationLabel, animalLocationField);
 	    
-	    Label animalDescriptionLabel = new Label("Description:");
-	    TextArea animalDescriptionArea = new TextArea();
+	    animalDescriptionLabel = new Label("Description:");
+	    animalDescriptionArea = new TextArea();
 	    animalDescriptionArea.setMinSize(800, 100);
 	    
-	    Label personDetails = new Label("OWNER DETAILS:");
+	    personDetails = new Label("OWNER DETAILS:");
 	    personDetails.setFont(Font.font("Berlin Sans FB", 15));
 	    
-	    Label ownerNameLabel = new Label("Full Name:");
-	    TextField ownerNameField = new TextField();
+	    ownerNameLabel = new Label("Full Name:");
+	    ownerNameField = new TextField();
 	    ownerNameField.setMinWidth(700);
 	    ownerName.getChildren().addAll(ownerNameLabel, ownerNameField);
 	    
-	    Label ownerTelephoneLabel = new Label("Telephone:");
-	    TextField ownerTelephoneField = new TextField();
+	    ownerTelephoneLabel = new Label("Telephone:");
+	    ownerTelephoneField = new TextField();
 	    ownerTelephoneField.setMinWidth(70);
-	    Label ownerEmailLabel = new Label("Email:");
-	    TextField ownerEmailField = new TextField();
+	    ownerEmailLabel = new Label("Email:");
+	    ownerEmailField = new TextField();
 	    ownerEmailField.setMinWidth(410);
 	    ownerTelephoneEmail.getChildren().addAll(ownerTelephoneLabel, ownerTelephoneField, ownerEmailLabel, ownerEmailField);
-	    
-	    
-	    Label ownerAddressLabel = new Label("Address:");
-	    TextField ownerAddressField = new TextField();
+	     
+	    ownerAddressLabel = new Label("Address:");
+	    ownerAddressField = new TextField();
 	    ownerAddressField.setMinWidth(710);
 	    ownerAddress.getChildren().addAll(ownerAddressLabel, ownerAddressField);
 
-	    Button submitButton = new Button("Submit");
+	    submitButton = new Button("Submit");
 	    submitButton.setStyle("-fx-background-color: darkGreen; -fx-text-fill: white");
-	    Button clearButton = new Button("Clear");
-	    Button exitButton = new Button("Cancel");
+	    submitButton.setOnAction(new LostAnimalController(this, "Submit"));
+	    clearButton = new Button("Clear");
+	    clearButton.setOnAction(new LostAnimalController(this, "Clear"));
+	    exitButton = new Button("Cancel");
+	    exitButton.setOnAction(new LostAnimalController(this, "Cancel"));
 	    actionButtons.getChildren().addAll(submitButton, clearButton, exitButton);
 	    actionButtons.setAlignment(Pos.CENTER);
 
@@ -141,56 +190,56 @@ public class LostAnimalView extends Scene {
 		removeLostAnimalPane.setVgap(12);
 		removeLostAnimalPane.setPadding(new Insets(100));
 		
-		HBox title = new HBox();
-		HBox animalSearch = new HBox();
+		title = new HBox();
+		animalSearch = new HBox();
 		animalSearch.setSpacing(30);
-	    HBox animalIdName = new HBox();
+	    animalIdName = new HBox();
 	    animalIdName.setSpacing(30);
-	    HBox animalDateLocation = new HBox();
+	    animalDateLocation = new HBox();
 	    animalDateLocation.setSpacing(30);
-	    HBox actionButtons = new HBox();
+	    actionButtons = new HBox();
 	    actionButtons.setSpacing(20);
 		
-	    Label sectionTitle = new Label("LOST ANIMAL");
+	    sectionTitle = new Label("LOST ANIMAL");
 	    sectionTitle.setFont(Font.font("Berlin Sans FB", 20));
 	    title.getChildren().add(sectionTitle);
 	    title.setAlignment(Pos.CENTER);
 	    
-	    Label animalSearchLabel = new Label("ID:");
-	    TextField animalSearchField = new TextField();
+	    animalSearchLabel = new Label("ID:");
+	    animalSearchField = new TextField();
 	    animalSearchField.setMinWidth(400);
-	    Button searchButton = new Button("Search");
+	    searchButton = new Button("Search");
 	    animalSearch.getChildren().addAll(animalSearchLabel, animalSearchField, searchButton);
 	    animalSearch.setAlignment(Pos.CENTER);
 	    
-		Label animalIdLabel = new Label("ID:");
-		TextField animalIdField = new TextField();
+		animalIdLabel = new Label("ID:");
+		animalIdField = new TextField();
 	    animalIdField.setMinWidth(50);
 	    animalIdField.setEditable(false);
-	    Label animalNameLabel = new Label("Full name:");
-	    TextField animalNameField = new TextField();
+	    animalNameLabel = new Label("Full name:");
+	    animalNameField = new TextField();
 	    animalNameField.setMinWidth(443);
 	    animalNameField.setEditable(false);
 	    animalIdName.getChildren().addAll(animalIdLabel, animalIdField, animalNameLabel, animalNameField);
 	    
-	    Label animalDateLabel = new Label("Date:");
-	    TextField animalDateField = new TextField();
+	    animalDateLabel = new Label("Date:");
+	    animalDateField = new TextField();
 	    animalDateField.setMinWidth(20);
 	    animalDateField.setEditable(false);
-	    Label animalLocationLabel = new Label("Location:");
-	    TextField animalLocationField = new TextField();
+	    animalLocationLabel = new Label("Location:");
+	    animalLocationField = new TextField();
 	    animalLocationField.setMinWidth(430);
 	    animalLocationField.setEditable(false);
 	    animalDateLocation.getChildren().addAll(animalDateLabel, animalDateField, animalLocationLabel, animalLocationField);
 	    
-	    Label animalDescriptionLabel = new Label("Description:");
-	    TextArea animalDescriptionArea = new TextArea();
+	    animalDescriptionLabel = new Label("Description:");
+	    animalDescriptionArea = new TextArea();
 	    animalDescriptionArea.setMinSize(800, 100);
 	    animalDescriptionArea.setEditable(false);
 
-	    Button removeButton = new Button("Remove");
+	    removeButton = new Button("Remove");
 	    removeButton.setStyle("-fx-background-color: red; -fx-text-fill: white");
-	    Button cancelButton = new Button("Cancel");
+	    cancelButton = new Button("Cancel");
 	    actionButtons.getChildren().addAll(removeButton, cancelButton);
 	    actionButtons.setAlignment(Pos.CENTER);
 
@@ -212,51 +261,51 @@ public class LostAnimalView extends Scene {
 		displayLostAnimalPane.setVgap(12);
 		displayLostAnimalPane.setPadding(new Insets(100));
 		
-		HBox title = new HBox();
-		HBox animalSearch = new HBox();
+		title = new HBox();
+		animalSearch = new HBox();
 		animalSearch.setSpacing(30);
-		HBox allowOwnerDetails = new HBox();
+		allowOwnerDetails = new HBox();
 		allowOwnerDetails.setSpacing(20);
-		HBox ownerDetails = new HBox();
+		ownerDetails = new HBox();
 		ownerDetails.setSpacing(30);
-	    HBox actionButtons = new HBox();
+	    actionButtons = new HBox();
 	    actionButtons.setSpacing(20);
 		
-	    Label sectionTitle = new Label("LOST ANIMAL");
+	    sectionTitle = new Label("LOST ANIMAL");
 	    sectionTitle.setFont(Font.font("Berlin Sans FB", 20));
 	    title.getChildren().add(sectionTitle);
 	    title.setAlignment(Pos.CENTER);
 	    
-	    Label animalSearchLabel = new Label("ID:");
-	    TextField animalSearchField = new TextField();
+	    animalSearchLabel = new Label("ID:");
+	    animalSearchField = new TextField();
 	    animalSearchField.setMinWidth(400);
-	    Button searchButton = new Button("Search");
+	    searchButton = new Button("Search");
 	    animalSearch.getChildren().addAll(animalSearchLabel, animalSearchField, searchButton);
 	    animalSearch.setAlignment(Pos.CENTER);
 
-	    ScrollPane scrollPane = new ScrollPane();
-	    TextArea animalDescriptionArea = new TextArea();
+	    scrollPane = new ScrollPane();
+	    animalDescriptionArea = new TextArea();
 	    animalDescriptionArea.setMinSize(800, 150);
 	    animalDescriptionArea.setEditable(false);
 	    scrollPane.setContent(animalDescriptionArea);
 	    
-	    CheckBox allowOwnerDetailsCheckBox = new CheckBox("Allow Owner Details");
+	    allowOwnerDetailsCheckBox = new CheckBox("Allow Owner Details");
 	    allowOwnerDetails.getChildren().addAll(allowOwnerDetailsCheckBox);
 	    
-	    Label ownerNameLabel = new Label("Full Name:");
-	    TextField ownerNameField = new TextField();
+	    ownerNameLabel = new Label("Full Name:");
+	    ownerNameField = new TextField();
 	    ownerNameField.setMinWidth(300);
 	    ownerNameField.setEditable(false);
-	    Label ownerEmailLabel = new Label("Email:");
-	    TextField ownerEmailField = new TextField();
+	    ownerEmailLabel = new Label("Email:");
+	    ownerEmailField = new TextField();
 	    ownerEmailField.setMinWidth(300);
 	    ownerEmailField.setEditable(false);
 	    ownerDetails.getChildren().addAll(ownerNameLabel, ownerNameField, ownerEmailLabel, ownerEmailField);
 	    ownerDetails.setVisible(false);
 	    
-	    Button editButton = new Button("Edit");
+	    editButton = new Button("Edit");
 	    editButton.setStyle("-fx-background-color: orange; -fx-text-fill: white");
-	    Button cancelButton = new Button("Cancel");
+	    cancelButton = new Button("Cancel");
 	    actionButtons.getChildren().addAll(editButton, cancelButton);
 	    actionButtons.setAlignment(Pos.CENTER);
 
@@ -283,5 +332,85 @@ public class LostAnimalView extends Scene {
 	    displayLostAnimalPane.add(actionButtons, 0, 18);
 		
         return displayLostAnimalPane;
+	}
+
+	public TextField getAnimalIdField() {
+		return animalIdField;
+	}
+
+	public void setAnimalIdField(TextField animalIdField) {
+		this.animalIdField = animalIdField;
+	}
+
+	public TextField getAnimalNameField() {
+		return animalNameField;
+	}
+
+	public void setAnimalNameField(TextField animalNameField) {
+		this.animalNameField = animalNameField;
+	}
+
+	public TextField getAnimalDateField() {
+		return animalDateField;
+	}
+
+	public void setAnimalDateField(TextField animalDateField) {
+		this.animalDateField = animalDateField;
+	}
+
+	public TextField getAnimalLocationField() {
+		return animalLocationField;
+	}
+
+	public void setAnimalLocationField(TextField animalLocationField) {
+		this.animalLocationField = animalLocationField;
+	}
+
+	public TextField getOwnerNameField() {
+		return ownerNameField;
+	}
+
+	public void setOwnerNameField(TextField ownerNameField) {
+		this.ownerNameField = ownerNameField;
+	}
+
+	public TextField getOwnerTelephoneField() {
+		return ownerTelephoneField;
+	}
+
+	public void setOwnerTelephoneField(TextField ownerTelephoneField) {
+		this.ownerTelephoneField = ownerTelephoneField;
+	}
+
+	public TextField getOwnerEmailField() {
+		return ownerEmailField;
+	}
+
+	public void setOwnerEmailField(TextField ownerEmailField) {
+		this.ownerEmailField = ownerEmailField;
+	}
+
+	public TextField getOwnerAddressField() {
+		return ownerAddressField;
+	}
+
+	public void setOwnerAddressField(TextField ownerAddressField) {
+		this.ownerAddressField = ownerAddressField;
+	}
+
+	public TextField getAnimalSearchField() {
+		return animalSearchField;
+	}
+
+	public void setAnimalSearchField(TextField animalSearchField) {
+		this.animalSearchField = animalSearchField;
+	}
+
+	public TextArea getAnimalDescriptionArea() {
+		return animalDescriptionArea;
+	}
+
+	public void setAnimalDescriptionArea(TextArea animalDescriptionArea) {
+		this.animalDescriptionArea = animalDescriptionArea;
 	}
 }
