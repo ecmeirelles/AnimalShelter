@@ -40,14 +40,27 @@ public class AnimalList {
 		return found;
 	}
 	
+	public int getIndexBySearch(int id) {
+		int index = -1;
+		
+		for(int i = 0; i < this.animalList.size(); i++){
+	        if(animalList.get(i).getAnimalId() == id){
+	            index = i;
+	            break;
+	        }
+		}
+		
+		return index;
+	}
+	
 	public void addAnimal(Animal animal) {
 		if (searchAnimal(animal.getAnimalId())) {
-			System.out.println("[ERROR] This animal is in the list.");
+			System.out.println("[ERROR] " + animal.getAnimalName() + " is in the list.");
 		}
 		
 		else {
 			animalList.add(animal);
-			System.out.println("[OK] Animal add successfully!");
+			System.out.println("[OK] " + animal.getAnimalName() + " add successfully!");
 		}
 	}
 	
