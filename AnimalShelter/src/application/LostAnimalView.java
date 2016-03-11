@@ -238,6 +238,7 @@ public class LostAnimalView extends Scene {
 	    animalSearchField = new TextField();
 	    animalSearchField.setMinWidth(400);
 	    searchButton = new Button("Search");
+	    searchButton.setOnAction(new LostAnimalController(this, "SearchToDelete"));
 	    animalSearch.getChildren().addAll(animalSearchLabel, animalSearchField, searchButton);
 	    animalSearch.setAlignment(Pos.CENTER);
 	    
@@ -334,6 +335,7 @@ public class LostAnimalView extends Scene {
 	    animalSearchField = new TextField();
 	    animalSearchField.setMinWidth(400);
 	    searchButton = new Button("Search");
+	    searchButton.setOnAction(new LostAnimalController(this, "SearchToDisplay"));
 	    animalSearch.getChildren().addAll(animalSearchLabel, animalSearchField, searchButton);
 	    animalSearch.setAlignment(Pos.CENTER);
 

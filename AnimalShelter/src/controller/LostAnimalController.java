@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import application.LostAnimalView;
@@ -18,6 +21,8 @@ import model.Person;
 public class LostAnimalController extends ActionEvent implements EventHandler<ActionEvent> {
 	private static final long serialVersionUID = 1L;
 	private String action;
+	File file = new File();
+	AnimalList animalList = new AnimalList();
 	LostAnimalView lostAnimalView;
 	
 	public LostAnimalController(LostAnimalView lostAnimalView, String action) {
@@ -35,49 +40,26 @@ public class LostAnimalController extends ActionEvent implements EventHandler<Ac
 			clearButton();
 		}
 		
-		else {
+		else if(action.equalsIgnoreCase("Cancel")){
 			cancelButton();
+		}
+		
+		else if(action.equalsIgnoreCase("SearchToDelete")){
+			searchToDeleteButton();
 		}
 	}
 
 	public void submitButton() {
-		Person person = new Person();
-		person.setPersonName(lostAnimalView.getOwnerNameField().getText());
-		person.setPersonPhone(lostAnimalView.getOwnerTelephoneField().getText());
-		person.setPersonEmail(lostAnimalView.getOwnerEmailField().getText());
-		person.setPersonAddress(lostAnimalView.getOwnerAddressField().getText());
-		
-		Category category = new Category();
-		category.setDate(lostAnimalView.getAnimalDateField().getValue());
-		category.setEmergencyContact(person);
-		
-		Animal animal = new Animal();
-		animal.setAnimalId(Integer.parseInt(lostAnimalView.getAnimalIdField().getText()));
-		animal.setAnimalName(lostAnimalView.getAnimalNameField().getText());
-		animal.setAnimalDescription(lostAnimalView.getAnimalDescriptionArea().getText());
-		animal.setAnimalCategory(category);
-		
-		AnimalList animalList = new AnimalList();
-		animalList.addAnimal(animal);
-		
-		LostAnimal lostAnimal = new LostAnimal(category.getDate(), category.getEmergencyContact());
-		lostAnimal.setDate(lostAnimalView.getAnimalDateField().getValue());
-		lostAnimal.setLostLocation(lostAnimalView.getAnimalLocationField().getText());
+
+		try {
+			file.writeInFile("lostAnimal.txt", lostAnimalView.getAnimalIdField().getText() + "\t" + lostAnimalView.getAnimalNameField().getText() 
+			                 + "\t" + lostAnimalView.getAnimalDateField().getValue() + "\t" + lostAnimalView.getAnimalLocationField().getText()
+			                 + "\t" + lostAnimalView.getAnimalDescriptionArea().getText());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 		clearButton();
-		
-		System.out.println("--------------- ANIMAL ---------------");
-		System.out.println("ID: " + animal.getAnimalId());
-		System.out.println("Name: " + animal.getAnimalName());
-		System.out.println("Date: " + animal.getAnimalCategory().getDate());
-		System.out.println("Location: " + lostAnimal.getLostLocation());
-		System.out.println("Description: " + animal.getAnimalDescription());
-		
-		System.out.println("-------------- PERSON ----------------");
-		System.out.println("Name: " + lostAnimal.getEmergencyContact().getPersonName());
-		System.out.println("Telephone: " + lostAnimal.getEmergencyContact().getPersonPhone());
-		System.out.println("E-mail: " + lostAnimal.getEmergencyContact().getPersonEmail());
-		System.out.println("Address: " + lostAnimal.getEmergencyContact().getPersonAddress());
 	}
 	
 	public void clearButton() {
@@ -102,5 +84,20 @@ public class LostAnimalController extends ActionEvent implements EventHandler<Ac
 		if (result.get() == ButtonType.OK){
 		    Main.getStage().setScene(Main.getScene());
 		} 
+	}
+	
+	public void searchToDeleteButton() {
+		try {
+			animalList = file.readFile("lostAnimal.txt");
+			int index = animalList.getIndexBySearch(Integer.parseInt(lostAnimalView.getAnimalSearchField().getText()));
+			
+			lostAnimalView.getAnimalIdField().setText(String.valueOf(animalList.getAnimalList().get(index).getAnimalId()));
+			lostAnimalView.getAnimalNameField().setText(animalList.getAnimalList().get(index).getAnimalName());
+			lostAnimalView.getAnimalDateField().setValue(animalList.getAnimalList().get(index).getAnimalCategory().getDate());
+			lostAnimalView.getAnimalLocationField().setText("");
+			lostAnimalView.getAnimalDescriptionArea().setText(animalList.getAnimalList().get(index).getAnimalDescription());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

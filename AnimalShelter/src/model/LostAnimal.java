@@ -8,6 +8,11 @@ public class LostAnimal extends Category {
 	public LostAnimal(LocalDate date, Person emergencyContact) {
 		super(date, emergencyContact);
 	}
+	
+	public LostAnimal(LocalDate date, Person emergencyContact, String lostLocation) {
+		super(date, emergencyContact);
+		this.lostLocation = lostLocation;
+	}
 
 	public String getLostLocation() {
 		return lostLocation;
