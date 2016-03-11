@@ -17,3 +17,6 @@ RemoteSystemsTempFiles
 .settings/
 bin
 build.fxbuild
+
+#Texts
+.txt
