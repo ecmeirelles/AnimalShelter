@@ -133,8 +133,8 @@ public class LostAnimalView extends Scene {
 	    
 	    animalDateLabel = new Label("Date:");
 	    animalDateField = new DatePicker();
-	    animalDateField.setMinWidth(20);
-	    animalDateField.setPromptText("dd-MM-yyyy");
+	    animalDateField.setMinWidth(10);
+	    animalDateField.setPromptText("DD-MM-YYYY");
 	    animalDateField.setConverter(new StringConverter<LocalDate>() {
 	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -160,7 +160,7 @@ public class LostAnimalView extends Scene {
 	    });
 	    animalLocationLabel = new Label("Location:");
 	    animalLocationField = new TextField();
-	    animalLocationField.setMinWidth(430);
+	    animalLocationField.setMinWidth(405);
 	    animalDateLocation.getChildren().addAll(animalDateLabel, animalDateField, animalLocationLabel, animalLocationField);
 	    
 	    animalDescriptionLabel = new Label("Description:");
@@ -254,8 +254,8 @@ public class LostAnimalView extends Scene {
 	    
 	    animalDateLabel = new Label("Date:");
 	    animalDateField = new DatePicker();
-	    animalDateField.setMinWidth(20);
-	    animalDateField.setPromptText("dd-MM-yyyy");
+	    animalDateField.setMinWidth(10);
+	    animalDateField.setPromptText("DD-MM-YYYY");
 	    animalDateField.setConverter(new StringConverter<LocalDate>() {
 	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -279,11 +279,10 @@ public class LostAnimalView extends Scene {
 	            }
 	        }
 	    });
-	    animalDateField.setMinWidth(20);
 	    animalDateField.setEditable(false);
 	    animalLocationLabel = new Label("Location:");
 	    animalLocationField = new TextField();
-	    animalLocationField.setMinWidth(430);
+	    animalLocationField.setMinWidth(400);
 	    animalLocationField.setEditable(false);
 	    animalDateLocation.getChildren().addAll(animalDateLabel, animalDateField, animalLocationLabel, animalLocationField);
 	    
