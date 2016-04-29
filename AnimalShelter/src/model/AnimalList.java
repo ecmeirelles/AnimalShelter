@@ -54,24 +54,14 @@ public class AnimalList {
 	}
 	
 	public void addAnimal(Animal animal) {
-		if (searchAnimal(animal.getAnimalId())) {
-			System.out.println("[ERROR] " + animal.getAnimalName() + " is in the list.");
-		}
-		
-		else {
+		if(!searchAnimal(animal.getAnimalId())) {
 			animalList.add(animal);
-			System.out.println("[OK] " + animal.getAnimalName() + " add successfully!");
 		}
 	}
 	
 	public void removeAnimal(Animal animal) {
-		if (!searchAnimal(animal.getAnimalId())) {
-			System.out.println("[ERROR] This animal is not in the list.");
-		}
-		
-		else {
+		if(searchAnimal(animal.getAnimalId())) {
 			animalList.remove(animalList.indexOf(animal));
-			System.out.println("[OK] Animal removed successfully!");
 		}
 	}
 	

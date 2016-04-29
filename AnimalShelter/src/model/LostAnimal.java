@@ -13,8 +13,9 @@ public class LostAnimal extends Category {
 		super(date, emergencyContact);
 		this.lostLocation = lostLocation;
 	}
-
-	public String getLostLocation() {
+	
+	 @Override
+	public String getLocation() {
 		return lostLocation;
 	}
 

@@ -8,7 +8,7 @@ public class Animal {
 	private int animalAge;
 	private String animalType;
 	private String animalColour;
-	private char animalGender;
+	private String animalGender;
 	private String animalDescription;
 	private String animalName;
 	private Image animalPicture;
@@ -19,7 +19,7 @@ public class Animal {
 		
 	}
 	
-	public Animal(int animalId, int animalAge, String animalType, String animalColour, char animalGender,
+	public Animal(int animalId, int animalAge, String animalType, String animalColour, String animalGender,
 			String animalDescription, String animalName, Image animalPicture, String animalBreed, Category animalCategory) {
 		
 		this.animalId = animalId;
@@ -34,7 +34,7 @@ public class Animal {
 		this.animalCategory = animalCategory;
 	}
 
-	public Animal(int animalId, String animalType, String animalColour, char animalGender, String animalDescription,
+	public Animal(int animalId, String animalType, String animalColour, String animalGender, String animalDescription,
 			String animalName, Image animalPicture, String animalBreed) {
 		
 		this.animalId = animalId;
@@ -47,7 +47,7 @@ public class Animal {
 		this.animalBreed = animalBreed;
 	}
 
-	public Animal(int animalId, int animalAge, String animalType, String animalColour, char animalGender,
+	public Animal(int animalId, int animalAge, String animalType, String animalColour, String animalGender,
 			String animalDescription, String animalName, String animalBreed) {
 		
 		this.animalId = animalId;
@@ -92,11 +92,11 @@ public class Animal {
 		this.animalColour = animalColour;
 	}
 
-	public char getAnimalGender() {
+	public String getAnimalGender() {
 		return animalGender;
 	}
 
-	public void setAnimalGender(char animalGender) {
+	public void setAnimalGender(String animalGender) {
 		this.animalGender = animalGender;
 	}
 
